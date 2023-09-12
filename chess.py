@@ -55,19 +55,21 @@ class Player:
 def prepare(player,player2,board):
     if player.legal_move==[]:
         return 
-    i=np.random.randint(0,len(player.legal_move))
-    [row,col]=player.legal_move[i]
+    while player.legal_move==[]:
+        i=np.random.randint(0,len(player.legal_move))
+        [row,col]=player.legal_move[i]
     #for (x,y) in player.legal_jump[i]:
         #if board[x,y]==-player.value:
-    if move(player,row,col,board):
-        change_status(player,row,col,player2,board)
+        if move(player,row,col,board):
+            change_status(player,row,col,player2,board)
     #调试
+         
+    
+        del player.legal_jump[i]
+        del player.legal_move[i]
     print(board)
     print(player.legal_move)  
-    print(player2.legal_move)  
-    
-    del player.legal_jump[i]
-    del player.legal_move[i]
+    print(player2.legal_move) 
 
 def flip(player,row,col,directions,board):
     for dr, dc in directions:
